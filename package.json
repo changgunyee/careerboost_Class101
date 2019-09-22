@@ -1,0 +1,36 @@
+{
+  "name": "mobx-react-typescript",
+  "version": "1.0.0",
+  "description": "MobX + React project with Typescript",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "boilerplate",
+    "mobx",
+    "starter-kit"
+  ],
+  "author": "changgunyee",
+  "devDependencies": {
+    "@types/react-dom": "^16.0.9",
+    "awesome-typescript-loader": "^5.2.1",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "prettier": "^1.18.2",
+    "typescript": "^3.1.3",
+    "webpack": "^4.22.0",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "dependencies": {
+    "mobx": "^5.5.2",
+    "mobx-react": "^5.3.5",
+    "mobx-react-devtools": "^6.0.3",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  }
+}
