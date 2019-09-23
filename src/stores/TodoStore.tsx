@@ -5,7 +5,8 @@ export default class TodoStore{
     constructor(todoList:TodoModel[]=[]){
         this.todoList=todoList;
     }
-    @observable private todoList;
+    @observable private readonly todoList;
+
 
     @computed
     get todos(){
@@ -15,6 +16,11 @@ export default class TodoStore{
     @computed
     get dones(){
         return this.todoList.filter((todo)=>todo.state===STATES.DONE);
+    }
+
+    @computed
+    get todosBookMarked(){
+        return this.todoList.filter((todo)=>todo.isBookMarked===true);
     }
 
     @computed
@@ -28,11 +34,10 @@ export default class TodoStore{
     }
 
     @action
-    editTodo=(id:number,props:object):void=>{
+    editTodo=(id:number,todo:Partial<TodoModel>):void=>{
         const todoToEdit=this.todoList.find((todo)=>todo.id===id);
-        //수정
-        for(let prop in props){
-            todoToEdit[prop].call(props[prop]);
+        for(let key in todo){
+            todoToEdit[key]=todo[key];
         }
     }
 }

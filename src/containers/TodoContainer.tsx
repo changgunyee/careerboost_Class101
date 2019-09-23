@@ -5,11 +5,13 @@ import {inject, observer} from "mobx-react";
 import TodoStore from "../stores/TodoStore";
 import '../styles/containers/TodoContainer.css';
 import {STATES, TodoModel} from "../models/TodoModel";
+import Modal from '../components/Modal';
 
 export enum FILTER_STATES{
     ALL="ALL",
     TODO="TODO",
-    DONE="DONE"
+    DONE="DONE",
+    BOOKMARK="BOOKMARK"
 }
 
 interface TodoContainerProps{
@@ -35,16 +37,18 @@ export default class TodoContainer extends React.Component<TodoContainerProps,To
     render(){
         return (
             <div className={"card-container card p-centered mt-2"}>
-                <CardHeader changeFilter={this.changeFilter} addTodo={this.addTodo}></CardHeader>
-                <CardBody cardItems={this.getTodos()}></CardBody>
+                <CardHeader changeFilter={this.changeFilter} addTodo={this.addTodo} filterState={this.state.filterState}></CardHeader>
+                <CardBody cardItems={this.getTodos()} selectItem={this.selectTodoToEdit}></CardBody>
             </div>
         )
     }
     private getTodos=()=>{
-        if(this.state.filterState==FILTER_STATES[FILTER_STATES.TODO]){
+        if(this.state.filterState===FILTER_STATES[FILTER_STATES.TODO]){
             return this.todoStore.todos;
-        }else if(this.state.filterState==FILTER_STATES.DONE){
+        }else if(this.state.filterState===FILTER_STATES.DONE){
             return this.todoStore.dones;
+        }else if(this.state.filterState===FILTER_STATES.BOOKMARK){
+            return this.todoStore.todosBookMarked;
         }else{
             return this.todoStore.all;
         }
