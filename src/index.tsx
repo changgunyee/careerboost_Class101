@@ -9,9 +9,6 @@ import {TodoModel} from "./models/TodoModel";
 
 
 const todoStore=new TodoStore();
-todoStore.addTodo(new TodoModel("abc"));
-todoStore.addTodo(new TodoModel("def"));
-todoStore.addTodo(new TodoModel("123"));
 
 class RootView extends React.Component {
     render() {
