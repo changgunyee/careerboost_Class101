@@ -3,14 +3,16 @@ import '../styles/components/CardHeader.css';
 import {FILTER_STATES} from "../containers/TodoContainer";
 import {TodoModel} from "../models/TodoModel";
 
-
 interface CardHeaderProps{
-    changeFilter:(state:FILTER_STATES)=>any;
-    addTodo:(todo:TodoModel)=>any;
+    filterState:FILTER_STATES,
+    changeFilter:(state:FILTER_STATES)=>void;
+    addTodo:(todo:TodoModel)=>void;
 }
+
 interface CardHeaderStates{
     text:string;
 }
+
 export default class CardHeader extends React.Component<CardHeaderProps,CardHeaderStates>{
     constructor(props: CardHeaderProps, context: any) {
         super(props, context);
@@ -20,7 +22,11 @@ export default class CardHeader extends React.Component<CardHeaderProps,CardHead
     }
 
     render(){
-        const {changeFilter} = this.props;
+        const {changeFilter,filterState} = this.props;
+
+        const filterDefaultClass='btn mx-1';
+        const filterElements=Object.keys(FILTER_STATES).map((state)=>(<a key={state} className={filterState===state? `${filterDefaultClass} btn-primary`:filterDefaultClass} onClick={this.changeFilterByClick.bind(this,state)}>{state}</a>))
+
         return (
             <div className="card-header">
                 <div className="card-title h1">TodoList</div>
@@ -32,7 +38,7 @@ export default class CardHeader extends React.Component<CardHeaderProps,CardHead
                 <div>
                     <span className="h4 filter">FILTER: </span>
                         {
-                            Object.keys(FILTER_STATES).map((state)=>(<a key={state} className="btn btn-primary mx-1" onClick={()=>changeFilter(FILTER_STATES[state])}>{state}</a>))
+                            filterElements
                         }
                 </div>
             </div>
@@ -41,10 +47,16 @@ export default class CardHeader extends React.Component<CardHeaderProps,CardHead
     private submitTodo=()=>{
         const {addTodo} = this.props;
         addTodo(new TodoModel(this.state.text));
+        this.setState({
+          text:''
+        })
     }
     private onTodoInputChange=(e)=>{
         this.setState({
             text:e.target.value
         })
+    }
+    private changeFilterByClick=(state:FILTER_STATES)=>{
+        this.props.changeFilter(FILTER_STATES[state])
     }
 }
