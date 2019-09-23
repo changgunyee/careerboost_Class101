@@ -40,4 +40,10 @@ export default class TodoStore{
             todoToEdit[key]=todo[key];
         }
     }
+
+    todo=(id:number):TodoModel=>{
+        return this.todoList.find((todo)=>{
+            return todo.id==id;
+        });
+    }
 }

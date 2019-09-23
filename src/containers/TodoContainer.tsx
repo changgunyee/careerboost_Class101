@@ -18,6 +18,7 @@ interface TodoContainerProps{
 }
 
 interface TodoContainerState {
+    todoToEdit:TodoModel,
     filterState:FILTER_STATES
 }
 
@@ -30,6 +31,7 @@ export default class TodoContainer extends React.Component<TodoContainerProps,To
         super(props,context);
         this.todoStore=this.props["todoStore"] as TodoStore;
         this.state={
+            todoToEdit:null,
             filterState:FILTER_STATES.ALL
         }
     }
@@ -39,6 +41,9 @@ export default class TodoContainer extends React.Component<TodoContainerProps,To
             <div className={"card-container card p-centered mt-2"}>
                 <CardHeader changeFilter={this.changeFilter} addTodo={this.addTodo} filterState={this.state.filterState}></CardHeader>
                 <CardBody cardItems={this.getTodos()} selectItem={this.selectTodoToEdit}></CardBody>
+              {
+                this.state.todoToEdit ?<Modal close={this.closeModal} todoEdited={this.state.todoToEdit} submitChange={this.editItem} ></Modal>:null
+              }
             </div>
         )
     }
@@ -60,5 +65,18 @@ export default class TodoContainer extends React.Component<TodoContainerProps,To
     }
     private addTodo=(todo:TodoModel)=>{
         this.todoStore.addTodo(todo);
+    }
+    private selectTodoToEdit=(id:number)=>{
+        this.setState({
+          todoToEdit:this.todoStore.todo(id)
+        })
+    }
+    private editItem=(id:number,todo:Partial<TodoModel>)=>{
+        this.todoStore.editTodo(id,todo);
+    }
+    private closeModal=()=>{
+        this.setState({
+            todoToEdit:null
+        })
     }
 }
