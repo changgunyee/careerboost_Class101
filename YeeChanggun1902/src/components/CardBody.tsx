@@ -8,18 +8,14 @@ interface CardBodyProps{
     selectItem:(number)=>void
 }
 
-interface CardBodyStates{
-
-}
-
 @observer
-export default class CardBody extends React.Component<CardBodyProps,CardBodyStates>{
+export default class CardBody extends React.Component<CardBodyProps>{
     constructor(props: CardBodyProps | Readonly<CardBodyProps>, context?: any) {
         super(props, context);
     }
 
     render(){
-        const {cardItems,selectItem}=this.props;
+        const {cardItems}=this.props;
         return (
             <div className="card-body">
                 <ul onClick={this.selectItemToEdit}>

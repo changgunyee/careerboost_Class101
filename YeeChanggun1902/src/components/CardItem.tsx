@@ -5,11 +5,7 @@ interface CardItemProps {
     item:TodoModel,
 }
 
-interface CardItemStates{
-
-}
-
-export default class CardItem extends React.Component<CardItemProps,CardItemStates>{
+export default class CardItem extends React.Component<CardItemProps>{
     constructor(props: CardItemProps, context: any) {
         super(props, context);
     }
