@@ -6,7 +6,7 @@ export default class TodoStore{
     constructor(todoList:TodoModel[]=[]){
         this.todoList=todoList;
     }
-    @observable private readonly todoList;
+    @observable private todoList;
 
     @computed
     get todo(){
@@ -34,11 +34,15 @@ export default class TodoStore{
     }
 
     @action
-    editTodo=(id:number,todo:Partial<TodoModel>):void=>{
-        const todoToEdit=this.todoList.find((todo)=>todo.id===id);
-        for(let key in todo){
-            todoToEdit[key]=todo[key];
-        }
+    editTodo=(id:number,newTodo:Partial<TodoModel>):void=>{
+        this.todoList=this.todoList.map((todo:TodoModel):TodoModel=>{
+            if(todo.id===id) {
+                for (let key in newTodo) {
+                    todo[key] = newTodo[key];
+                }
+            }
+            return todo;
+        })
     }
 
     getSingleTodo=(id:number):TodoModel=>{

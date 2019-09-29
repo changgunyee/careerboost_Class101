@@ -25,7 +25,8 @@ export default class CardHeader extends React.Component<CardHeaderProps,CardHead
         const {changeFilter,filterState} = this.props;
 
         const filterDefaultClass='btn mx-1';
-        const filterElements=Object.keys(FILTER_STATES).map((state)=>(<a key={state} className={filterState===state? `${filterDefaultClass} btn-primary`:filterDefaultClass} onClick={this.changeFilterByClick.bind(this,state)}>{state}</a>))
+        const filterElements=Object.keys(FILTER_STATES).map((state)=>
+            (<a key={state} className={filterState===FILTER_STATES[state]? `${filterDefaultClass} btn-primary`:filterDefaultClass} onClick={this.changeFilterByClick.bind(this,state)}>{state}</a>))
 
         return (
             <div className="card-header">
@@ -51,11 +52,13 @@ export default class CardHeader extends React.Component<CardHeaderProps,CardHead
           text:''
         })
     }
+
     private onTodoInputChange=(e: { target: { value: string; }; }):void=>{
         this.setState({
             text:e.target.value
         })
     }
+
     private changeFilterByClick=(state:FILTER_STATES):void=>{
         this.props.changeFilter(FILTER_STATES[state])
     }
