@@ -15,25 +15,15 @@ export default class CardBody extends React.Component<CardBodyProps>{
     }
 
     render(){
-        const {cardItems}=this.props;
+        const {cardItems,selectItem}=this.props;
         return (
             <div className="card-body">
-                <ul onClick={this.selectItemToEdit}>
+                <ul>
                     {cardItems.map((item)=>{
-                        return <CardItem key={item.id} item={item}></CardItem>
+                        return <CardItem key={item.id} item={item} selectItem={selectItem}></CardItem>
                     })}
                 </ul>
             </div>
         )
-    }
-
-    private selectItemToEdit=(e)=>{
-        let todoId;
-        if(e.target.tagName==="BUTTON"){
-            todoId=e.target.parentElement.dataset.id;
-        }else if(e.target.tagName==="I"){
-            todoId=e.target.parentElement.parentElement.dataset.id;
-        }
-        this.props.selectItem(Number(todoId));
     }
 }

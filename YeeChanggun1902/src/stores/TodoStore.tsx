@@ -6,7 +6,7 @@ export default class TodoStore{
         this.todoList=todoList;
     }
     @observable private readonly todoList;
-    
+
     @computed
     get todos(){
         return this.todoList.filter((todo)=> todo.state===STATES.TODO);

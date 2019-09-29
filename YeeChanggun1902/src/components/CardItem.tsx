@@ -3,6 +3,7 @@ import {TodoModel} from "../models/TodoModel";
 
 interface CardItemProps {
     item:TodoModel,
+    selectItem:(number)=>void
 }
 
 export default class CardItem extends React.Component<CardItemProps>{
@@ -11,10 +12,10 @@ export default class CardItem extends React.Component<CardItemProps>{
     }
 
     render(){
-        const {item}=this.props;
+        const {item,selectItem}=this.props;
         return (
             <li data-id={item.id}>{item.content}
-                <button className="btn btn-sm float-right"><i className="icon icon-edit"></i></button>
+                <button className="btn btn-sm float-right" onClick={selectItem.bind(this,item.id)}><i className="icon icon-edit"></i></button>
             </li>
         )
     }
