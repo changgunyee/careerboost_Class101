@@ -44,19 +44,19 @@ export default class CardHeader extends React.Component<CardHeaderProps,CardHead
             </div>
         )
     }
-    private submitTodo=()=>{
+    private submitTodo=():void=>{
         const {addTodo} = this.props;
         addTodo(new TodoModel(this.state.text));
         this.setState({
           text:''
         })
     }
-    private onTodoInputChange=(e)=>{
+    private onTodoInputChange=(e: { target: { value: string; }; }):void=>{
         this.setState({
             text:e.target.value
         })
     }
-    private changeFilterByClick=(state:FILTER_STATES)=>{
+    private changeFilterByClick=(state:FILTER_STATES):void=>{
         this.props.changeFilter(FILTER_STATES[state])
     }
 }

@@ -42,31 +42,31 @@ export default class TodoContainer extends React.Component<TodoContainerProps,To
         )
     }
 
-    private getTodoByFilter=()=>{
+    private getTodoByFilter=():TodoModel[]=>{
         return this.todoStore[this.state.filterState];
     }
 
-    private changeFilter=(state:FILTER_STATES)=>{
+    private changeFilter=(state:FILTER_STATES):void=>{
         this.setState({
             filterState:state
         })
     }
 
-    private addTodo=(todo:TodoModel)=>{
+    private addTodo=(todo:TodoModel):void=>{
         this.todoStore.addTodo(todo);
     }
 
-    private selectTodoToEdit=(id:number)=>{
+    private selectTodoToEdit=(id:number):void=>{
         this.setState({
           todoToEdit:this.todoStore.getSingleTodo(id)
         })
     }
 
-    private editItem=(id:number,todo:Partial<TodoModel>)=>{
+    private editItem=(id:number,todo:Partial<TodoModel>):void=>{
         this.todoStore.editTodo(id,todo);
     }
 
-    private closeModal=()=>{
+    private closeModal=():void=>{
         this.setState({
             todoToEdit:null
         })

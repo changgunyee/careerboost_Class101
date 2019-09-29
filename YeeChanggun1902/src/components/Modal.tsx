@@ -58,25 +58,25 @@ export default class Modal extends React.Component<ModalProps,ModalStates>{
     )
   }
 
-  private changeIsBookMarked=(e)=>{
+  private changeIsBookMarked=(e: { target: { checked: boolean; }; }):void=>{
     this.setState({
       isBookMarked:e.target.checked
     })
   }
 
-  private changeState=(e)=>{
+  private changeState=(e: { target: { checked: boolean; }; }):void=>{
     this.setState({
       state:e.target.checked?STATES.DONE:STATES.TODO
     })
   }
 
-  private changeContent=(e)=>{
+  private changeContent=(e: { target: { value: string; }; }):void=>{
     this.setState({
       content:e.target.value
     })
   }
 
-  private submitChange=(e)=>{
+  private submitChange=():void=>{
     const {id,content,isBookMarked,state}=this.state;
     this.props.submitChange(id,{
       content,
