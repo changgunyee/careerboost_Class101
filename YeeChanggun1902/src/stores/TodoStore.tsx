@@ -1,5 +1,6 @@
 import {action, autorun, computed, observable, reaction, toJS} from "mobx";
-import {STATES, TodoModel} from "../models/TodoModel";
+import {TodoModel} from "../models/TodoModel";
+import {STATES} from "../static";
 
 export default class TodoStore{
     constructor(todoList:TodoModel[]=[]){
@@ -8,17 +9,17 @@ export default class TodoStore{
     @observable private readonly todoList;
 
     @computed
-    get todos(){
+    get todo(){
         return this.todoList.filter((todo)=> todo.state===STATES.TODO);
     }
 
     @computed
-    get dones(){
+    get done(){
         return this.todoList.filter((todo)=>todo.state===STATES.DONE);
     }
 
     @computed
-    get todosBookMarked(){
+    get bookmark(){
         return this.todoList.filter((todo)=>todo.isBookMarked===true);
     }
 
@@ -40,7 +41,7 @@ export default class TodoStore{
         }
     }
 
-    todo=(id:number):TodoModel=>{
+    getSingleTodo=(id:number):TodoModel=>{
         return this.todoList.find((todo)=>{
             return todo.id==id;
         });

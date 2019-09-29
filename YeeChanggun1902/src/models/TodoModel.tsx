@@ -1,9 +1,5 @@
 import {observable} from "mobx";
-
-export enum STATES{
-    TODO='TODO',
-    DONE='DONE'
-}
+import {STATES} from "../static";
 
 export class TodoModel{
     readonly id:number;

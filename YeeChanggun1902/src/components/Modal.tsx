@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { STATES, TodoModel } from '../models/TodoModel';
-import { FILTER_STATES } from '../containers/TodoContainer';
+import { TodoModel } from '../models/TodoModel';
+import {FILTER_STATES, STATES} from "../static";
 
 interface ModalProps {
   submitChange:(id:number,todo:Partial<TodoModel>)=>void,
@@ -60,21 +60,25 @@ export default class Modal extends React.Component<ModalProps,ModalStates>{
       </div>
     )
   }
+
   private changeIsBookMarked=(e)=>{
     this.setState({
       isBookMarked:e.target.checked
     })
   }
+
   private changeState=(e)=>{
     this.setState({
       state:e.target.checked?STATES.DONE:STATES.TODO
     })
   }
+
   private changeContent=(e)=>{
     this.setState({
       content:e.target.value
     })
   }
+
   private submitChange=(e)=>{
     const {id,content,isBookMarked,state}=this.state;
     this.props.submitChange(id,{

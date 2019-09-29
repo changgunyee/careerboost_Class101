@@ -1,7 +1,7 @@
 import * as React from "react";
 import '../styles/components/CardHeader.css';
-import {FILTER_STATES} from "../containers/TodoContainer";
 import {TodoModel} from "../models/TodoModel";
+import {FILTER_STATES} from "../static";
 
 interface CardHeaderProps{
     filterState:FILTER_STATES,
