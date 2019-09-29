@@ -27,9 +27,6 @@ export default class Modal extends React.Component<ModalProps,ModalStates>{
     }
   }
 
-  componentDidMount(): void {
-  }
-
   render(){
     const {content,state,isBookMarked}=this.state;
     return (

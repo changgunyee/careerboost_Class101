@@ -1,42 +1,32 @@
-import {observable} from "mobx";
+import {action, observable} from "mobx";
 import {STATES} from "../static";
 
 export class TodoModel{
     readonly id:number;
-    @observable private _content:string;
-    @observable private _state:STATES;
-    @observable private _isBookMarked:boolean;
-    private static _newId:number=0;
+    @observable public content:string;
+    @observable public state:STATES;
+    @observable public isBookMarked:boolean;
+    private static newId:number=0;
 
     constructor(content:string, state:STATES=STATES.TODO,isBookMarked:boolean=false){
-        this.id=TodoModel._newId++;
-        this._content=content;
-        this._state=state;
-        this._isBookMarked=isBookMarked;
+        this.id=TodoModel.newId++;
+        this.content=content;
+        this.state=state;
+        this.isBookMarked=isBookMarked;
     }
 
-
-    get content(): string {
-        return this._content;
+    @action
+    changeContent=(content: string):void =>{
+        this.content = content;
     }
 
-    set content(value: string) {
-        this._content = value;
+    @action
+    changeState=(state: STATES):void =>{
+        this.state = state;
     }
 
-    get state(): STATES {
-        return this._state;
-    }
-
-    set state(value: STATES) {
-        this._state = value;
-    }
-
-    get isBookMarked(): boolean {
-        return this._isBookMarked;
-    }
-
-    set isBookMarked(value: boolean) {
-        this._isBookMarked = value;
+    @action
+    changeBookMark=(isBookMarked: boolean):void =>{
+        this.isBookMarked = isBookMarked;
     }
 }
