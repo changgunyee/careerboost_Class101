@@ -1,5 +1,5 @@
 import * as React from "react";
-import '../styles/components/CardHeader.css';
+import '../styles/components/TodoHeader.css';
 import {TodoModel} from "../models/TodoModel";
 import {FILTER_STATES} from "../static";
 
@@ -13,7 +13,7 @@ interface CardHeaderStates{
     text:string;
 }
 
-export default class CardHeader extends React.Component<CardHeaderProps,CardHeaderStates>{
+export default class TodoHeader extends React.Component<CardHeaderProps,CardHeaderStates>{
     constructor(props: CardHeaderProps, context: any) {
         super(props, context);
         this.state={

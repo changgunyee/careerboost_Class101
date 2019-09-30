@@ -1,6 +1,6 @@
 import * as React from "react";
-import CardHeader from "../components/CardHeader";
-import CardBody from "../components/CardBody";
+import TodoHeader from "../components/TodoHeader";
+import TodoBody from "../components/TodoBody";
 import {inject, observer} from "mobx-react";
 import TodoStore from "../stores/TodoStore";
 import '../styles/containers/TodoContainer.css';
@@ -33,8 +33,8 @@ export default class TodoContainer extends React.Component<TodoContainerProps,To
     render(){
         return (
             <div className={"card-container card p-centered mt-2"}>
-                <CardHeader changeFilter={this.changeFilter} addTodo={this.addTodo} filterState={this.state.filterState}></CardHeader>
-                <CardBody cardItems={this.getTodoByFilter()} selectItem={this.selectTodoToEdit}></CardBody>
+                <TodoHeader changeFilter={this.changeFilter} addTodo={this.addTodo} filterState={this.state.filterState}></TodoHeader>
+                <TodoBody cardItems={this.getTodoByFilter()} selectItem={this.selectTodoToEdit}></TodoBody>
               {
                 this.state.todoToEdit ?<Modal close={this.closeModal} todoEdited={this.state.todoToEdit} submitChange={this.editItem} ></Modal>:null
               }

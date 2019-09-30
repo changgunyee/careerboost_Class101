@@ -6,7 +6,7 @@ interface CardItemProps {
     selectItem:(number)=>void
 }
 
-export default class CardItem extends React.Component<CardItemProps>{
+export default class TodoItem extends React.Component<CardItemProps>{
     constructor(props: CardItemProps, context: any) {
         super(props, context);
     }

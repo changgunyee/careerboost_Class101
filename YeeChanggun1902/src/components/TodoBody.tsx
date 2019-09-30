@@ -1,5 +1,5 @@
 import * as React from "react";
-import CardItem from "./CardItem";
+import TodoItem from "./TodoItem";
 import {observer} from "mobx-react";
 import { TodoModel } from '../models/TodoModel';
 
@@ -9,7 +9,7 @@ interface CardBodyProps{
 }
 
 @observer
-export default class CardBody extends React.Component<CardBodyProps>{
+export default class TodoBody extends React.Component<CardBodyProps>{
     constructor(props: CardBodyProps | Readonly<CardBodyProps>, context?: any) {
         super(props, context);
     }
@@ -20,7 +20,7 @@ export default class CardBody extends React.Component<CardBodyProps>{
             <div className="card-body">
                 <ul>
                     {cardItems.map((item)=>{
-                        return <CardItem key={item.id} item={item} selectItem={selectItem}></CardItem>
+                        return <TodoItem key={item.id} item={item} selectItem={selectItem}></TodoItem>
                     })}
                 </ul>
             </div>
