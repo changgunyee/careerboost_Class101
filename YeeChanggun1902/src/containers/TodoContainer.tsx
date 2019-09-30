@@ -1,11 +1,12 @@
 import * as React from "react";
-import TodoHeader from "../components/TodoHeader";
-import TodoBody from "../components/TodoBody";
+import TodoHeader from "../components/Todo/TodoHeader";
+import FilterList from "../components/Todo/FilterList";
+import TodoBody from "../components/Todo/TodoBody";
 import {inject, observer} from "mobx-react";
 import TodoStore from "../stores/TodoStore";
 import '../styles/containers/TodoContainer.css';
 import {TodoModel} from "../models/TodoModel";
-import Modal from '../components/Modal';
+import ModalContainer from './ModalContainer';
 import {FILTER_STATES} from "../static";
 
 interface TodoContainerProps{
@@ -32,11 +33,12 @@ export default class TodoContainer extends React.Component<TodoContainerProps,To
 
     render(){
         return (
-            <div className={"card-container card p-centered mt-2"}>
-                <TodoHeader changeFilter={this.changeFilter} addTodo={this.addTodo} filterState={this.state.filterState}></TodoHeader>
+            <div className={"todo-container card p-centered mt-2"}>
+                <TodoHeader addTodo={this.addTodo} ></TodoHeader>
+                <FilterList changeFilter={this.changeFilter} filterState={this.state.filterState}></FilterList>
                 <TodoBody cardItems={this.getTodoByFilter()} selectItem={this.selectTodoToEdit}></TodoBody>
               {
-                this.state.todoToEdit ?<Modal close={this.closeModal} todoEdited={this.state.todoToEdit} submitChange={this.editItem} ></Modal>:null
+                this.state.todoToEdit ?<ModalContainer close={this.closeModal} todoEdited={this.state.todoToEdit} submitChange={this.editItem} ></ModalContainer>:null
               }
             </div>
         )

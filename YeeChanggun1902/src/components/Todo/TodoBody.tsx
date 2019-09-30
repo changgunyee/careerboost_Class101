@@ -1,7 +1,7 @@
 import * as React from "react";
 import TodoItem from "./TodoItem";
 import {observer} from "mobx-react";
-import { TodoModel } from '../models/TodoModel';
+import { TodoModel } from '../../models/TodoModel';
 
 interface CardBodyProps{
     cardItems:TodoModel[]
@@ -16,6 +16,7 @@ export default class TodoBody extends React.Component<CardBodyProps>{
 
     render(){
         const {cardItems,selectItem}=this.props;
+
         return (
             <div className="card-body">
                 <ul>

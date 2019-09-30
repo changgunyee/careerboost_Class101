@@ -1,5 +1,5 @@
 import * as React from "react";
-import {TodoModel} from "../models/TodoModel";
+import {TodoModel} from "../../models/TodoModel";
 
 interface CardItemProps {
     item:TodoModel,
