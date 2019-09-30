@@ -1,8 +1,5 @@
-.card-header{
+.todo-header{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.filter{
-    vertical-align: middle;
 }
